@@ -1,0 +1,41 @@
+# Input file template for lattice parameters
+
+# --------------- INITIALIZATION ------------------
+clear
+units             metal
+atom_style        charge
+# ------------------ ATOM DEFINITION -------------------
+box               tilt large
+read_data         data.static
+# ------------------------ FORCE FIELDS -----------------------
+{ff_settings}
+
+#---------------------------Settings----------------------------
+neigh_modify      delay 0 every 1 check yes page 200000 one 20000
+
+#----------------------Run Minimization-------------------------
+reset_timestep    0
+
+thermo            1
+thermo_style      custom pe cella cellb cellc cellalpha cellbeta cellgamma
+
+{change_box}
+{box_relax_settings}
+min_style         {min_style}
+minimize          {etol} {ftol} {maxiter} {maxeval}
+
+variable          a equal cella
+variable          b equal cellb
+variable          c equal cellc
+variable          alpha equal cellalpha
+variable          beta equal cellbeta
+variable          gamma equal cellgamma
+variable          energy equal pe
+
+#---------------------------------------------
+
+######################################
+# SIMULATION DONE
+print             "All done"
+#print             "${{a}} ${{b}} ${{c}}" file lattice.txt
+write_data        data.relaxed
