@@ -1,0 +1,3 @@
+Split,Num_entries,Max_log10sigma,Min_log10sigma,Mean_log10sigma,Num_positive_samples,Num_negative_samples,Fraction_positive_samples
+Test,55,-2.026410377,-20.80134291,-5.4599416842,25,30,0.45454545454545453
+Training and Validation,493,-1.552841969,-30.56863624,-6.31217040353144,186,307,0.3772819472616633
