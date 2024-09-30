@@ -77,7 +77,6 @@ summary stats
 Modified version of the `maml` package ([https://github.com/materialsvirtuallab/maml](https://github.com/materialsvirtuallab/maml)) from the Materials Virtual Lab. Documentation for the original package can be found at [https://materialsvirtuallab.github.io/maml/](https://materialsvirtuallab.github.io/maml/). The AtomSets code herein is modified to include dropout layers and L2 kernel regularization.
 
 **References to original work**:
-- **GitHub Repository**:
   ```bibtex
   @misc{maml,
     author = {Chen, Chi and Zuo, Yunxing, Ye, Weike, Ji, Qi and Ong, Shyue Ping},
@@ -88,6 +87,7 @@ Modified version of the `maml` package ([https://github.com/materialsvirtuallab/
     howpublished = {\url{https://github.com/materialsvirtuallab/maml}},
   }
 
+AtomSets model:
 Chen, C.; Ong, S. P. AtomSets as a hierarchical transfer learning framework for small and large materials
 datasets. Npj Comput. Mater. 2021, 7, 173. https://doi.org/10.1038/s41524-021-00639-w
 
