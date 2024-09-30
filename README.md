@@ -58,34 +58,20 @@ Classification of (Dis)ordered Structures as Superionic Lithium Conductors (http
 
 ### Data
 The labelled database used in this repository and corresponding publication contains experimental ionic conductivity values paired with experimental crystal structures from the Inorganic Crystal Structure Database (ICSD). Crystallographic information files (CIFs) for ICSD structures are not supplied and so users must have access to relevant CIF files in the database to replicate the entirety of this work.
-
-Featurized structures, 
-graph_based_features_11022023_wo_duplicates
-train val splits
-summary stats
-
-- **Labelled Data**:  
-  Preprocessed data containing labeled materials with known ionic conductivity values.
-
-- **Unlabelled Data**:  
-  Raw data for materials without labeled ionic conductivity, which is used for predictions.
-
-### maml (MAterials Machine Learning)
  
 ### maml (MAterials Machine Learning)
 
 Modified version of the `maml` package ([https://github.com/materialsvirtuallab/maml](https://github.com/materialsvirtuallab/maml)) from the Materials Virtual Lab. Documentation for the original package can be found at [https://materialsvirtuallab.github.io/maml/](https://materialsvirtuallab.github.io/maml/). The AtomSets code herein is modified to include dropout layers and L2 kernel regularization.
 
-**References to original work**:
-  ```bibtex
-  @misc{maml,
-    author = {Chen, Chi and Zuo, Yunxing, Ye, Weike, Ji, Qi and Ong, Shyue Ping},
-    title = {{Maml - materials machine learning package}},
-    year = {2020},
-    publisher = {GitHub},
-    journal = {GitHub repository},
-    howpublished = {\url{https://github.com/materialsvirtuallab/maml}},
-  }
+```bibtex
+@misc{maml,
+  author = {Chen, Chi and Zuo, Yunxing, Ye, Weike, Ji, Qi and Ong, Shyue Ping},
+  title = {{Maml - materials machine learning package}},
+  year = {2020},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/materialsvirtuallab/maml}},
+}
 
 AtomSets model:
 Chen, C.; Ong, S. P. AtomSets as a hierarchical transfer learning framework for small and large materials
