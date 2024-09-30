@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>megnet.models.megnet module &#8212; megnet 1.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/flasky.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="megnet.utils package" href="megnet.utils.html" />
+    <link rel="prev" title="megnet.models.base module" href="megnet.models.base.html" />
+
+   
+  
+  <link media="only screen and (max-device-width: 480px)" href="_static/small_flask.css" type= "text/css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="megnet.utils.html" title="megnet.utils package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="megnet.models.base.html" title="megnet.models.base module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">megnet 1.3.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="megnet.html" >megnet package</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="megnet.models.html" accesskey="U">megnet.models package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">megnet.models.megnet module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-megnet.models.megnet">
+<span id="megnet-models-megnet-module"></span><h1>megnet.models.megnet module<a class="headerlink" href="#module-megnet.models.megnet" title="Permalink to this headline">¶</a></h1>
+<p>Implements megnet models.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="megnet.models.megnet.MEGNetModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">MEGNetModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">nfeat_edge:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">nfeat_global:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">nfeat_node:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">nblocks:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">3</span></em>, <em class="sig-param"><span class="pre">lr:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.001</span></em>, <em class="sig-param"><span class="pre">n1:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">64</span></em>, <em class="sig-param"><span class="pre">n2:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">32</span></em>, <em class="sig-param"><span class="pre">n3:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">16</span></em>, <em class="sig-param"><span class="pre">nvocal:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">95</span></em>, <em class="sig-param"><span class="pre">embedding_dim:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">16</span></em>, <em class="sig-param"><span class="pre">nbvocal:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">bond_embedding_dim:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">ngvocal:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">global_embedding_dim:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">npass:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">3</span></em>, <em class="sig-param"><span class="pre">ntarget:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1</span></em>, <em class="sig-param"><span class="pre">act:</span> <span class="pre">Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">softplus2&gt;</span></em>, <em class="sig-param"><span class="pre">is_classification:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em>, <em class="sig-param"><span class="pre">loss:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'mse'</span></em>, <em class="sig-param"><span class="pre">metrics:</span> <span class="pre">Optional[List[str]]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">l2_coef:</span> <span class="pre">Optional[float]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">dropout:</span> <span class="pre">Optional[float]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">graph_converter:</span> <span class="pre">Optional[megnet.data.graph.StructureGraph]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">target_scaler:</span> <span class="pre">megnet.utils.preprocessing.Scaler</span> <span class="pre">=</span> <span class="pre">&lt;megnet.utils.preprocessing.DummyScaler</span> <span class="pre">object&gt;</span></em>, <em class="sig-param"><span class="pre">optimizer_kwargs:</span> <span class="pre">Dict</span> <span class="pre">=</span> <span class="pre">{'clipnorm':</span> <span class="pre">3}</span></em>, <em class="sig-param"><span class="pre">dropout_on_predict:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em>, <em class="sig-param"><span class="pre">sample_weight_mode:</span> <span class="pre">Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/megnet/models/megnet.html#MEGNetModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.models.megnet.MEGNetModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="megnet.models.base.html#megnet.models.base.GraphModel" title="megnet.models.base.GraphModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">megnet.models.base.GraphModel</span></code></a></p>
+<p>Construct a graph network model with or without explicit atom features
+if n_feature is specified then a general graph model is assumed,
+otherwise a crystal graph model with z number as atom feature is assumed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nfeat_edge</strong> – (int) number of bond features</p></li>
+<li><p><strong>nfeat_global</strong> – (int) number of state features</p></li>
+<li><p><strong>nfeat_node</strong> – (int) number of atom features</p></li>
+<li><p><strong>nblocks</strong> – (int) number of MEGNetLayer blocks</p></li>
+<li><p><strong>lr</strong> – (float) learning rate</p></li>
+<li><p><strong>n1</strong> – (int) number of hidden units in layer 1 in MEGNetLayer</p></li>
+<li><p><strong>n2</strong> – (int) number of hidden units in layer 2 in MEGNetLayer</p></li>
+<li><p><strong>n3</strong> – (int) number of hidden units in layer 3 in MEGNetLayer</p></li>
+<li><p><strong>nvocal</strong> – (int) number of total element</p></li>
+<li><p><strong>embedding_dim</strong> – (int) number of embedding dimension</p></li>
+<li><p><strong>nbvocal</strong> – (int) number of bond types if bond attributes are types</p></li>
+<li><p><strong>bond_embedding_dim</strong> – (int) number of bond embedding dimension</p></li>
+<li><p><strong>ngvocal</strong> – (int) number of global types if global attributes are types</p></li>
+<li><p><strong>global_embedding_dim</strong> – (int) number of global embedding dimension</p></li>
+<li><p><strong>npass</strong> – (int) number of recurrent steps in Set2Set layer</p></li>
+<li><p><strong>ntarget</strong> – (int) number of output targets</p></li>
+<li><p><strong>act</strong> – (object) activation function</p></li>
+<li><p><strong>l2_coef</strong> – (float or None) l2 regularization parameter</p></li>
+<li><p><strong>is_classification</strong> – (bool) whether it is a classification task</p></li>
+<li><p><strong>loss</strong> – (object or str) loss function</p></li>
+<li><p><strong>metrics</strong> – (list or dict) List or dictionary of Keras metrics to be evaluated by the model during training
+and testing</p></li>
+<li><p><strong>dropout</strong> – (float) dropout rate</p></li>
+<li><p><strong>graph_converter</strong> – (object) object that exposes a “convert” method for structure to graph conversion</p></li>
+<li><p><strong>target_scaler</strong> – (object) object that exposes a “transform” and “inverse_transform” methods for transforming
+the target values</p></li>
+<li><p><strong>optimizer_kwargs</strong> (<em>dict</em>) – extra keywords for optimizer, for example clipnorm and clipvalue</p></li>
+<li><p><strong>sample_weight_mode</strong> (<em>str</em>) – sample weight mode for compilation</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em>) – in the case where bond inputs are pure distances (not the expanded distances nor integers
+for embedding, i.e., nfeat_edge=None and bond_embedding_dim=None),
+kwargs can take additional inputs for expand the distance using Gaussian basis.
+centers (np.ndarray): array for defining the Gaussian expansion centers
+width (float): width for the Gaussian basis</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.models.megnet.MEGNetModel.from_mvl_models">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_mvl_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="megnet.models.base.html#megnet.models.base.GraphModel" title="megnet.models.base.GraphModel"><span class="pre">megnet.models.base.GraphModel</span></a></span></span><a class="reference internal" href="_modules/megnet/models/megnet.html#MEGNetModel.from_mvl_models"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.models.megnet.MEGNetModel.from_mvl_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>load model using mvl model names
+:param name: model name string. Please check</p>
+<blockquote>
+<div><p>megnet.utils.models.AVAILABEL_MODELS for available models</p>
+</div></blockquote>
+<dl class="field-list simple">
+</dl>
+<p>Returns: GraphModel instance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.models.megnet.MEGNetModel.from_url">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="megnet.models.base.html#megnet.models.base.GraphModel" title="megnet.models.base.GraphModel"><span class="pre">megnet.models.base.GraphModel</span></a></span></span><a class="reference internal" href="_modules/megnet/models/megnet.html#MEGNetModel.from_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.models.megnet.MEGNetModel.from_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download and load a model from a URL. E.g.
+<a class="reference external" href="https://github.com/materialsvirtuallab/megnet/blob/master/mvl_models/mp-2019.4.1/formation_energy.hdf5">https://github.com/materialsvirtuallab/megnet/blob/master/mvl_models/mp-2019.4.1/formation_energy.hdf5</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>url</strong> – (str) url link of the model</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>GraphModel</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="megnet.models.megnet.make_megnet_model">
+<span class="sig-name descname"><span class="pre">make_megnet_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">nfeat_edge:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">nfeat_global:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">nfeat_node:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">nblocks:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">3</span></em>, <em class="sig-param"><span class="pre">n1:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">64</span></em>, <em class="sig-param"><span class="pre">n2:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">32</span></em>, <em class="sig-param"><span class="pre">n3:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">16</span></em>, <em class="sig-param"><span class="pre">nvocal:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">95</span></em>, <em class="sig-param"><span class="pre">embedding_dim:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">16</span></em>, <em class="sig-param"><span class="pre">nbvocal:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">bond_embedding_dim:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">ngvocal:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">global_embedding_dim:</span> <span class="pre">Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">npass:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">3</span></em>, <em class="sig-param"><span class="pre">ntarget:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1</span></em>, <em class="sig-param"><span class="pre">act:</span> <span class="pre">Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">softplus2&gt;</span></em>, <em class="sig-param"><span class="pre">is_classification:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em>, <em class="sig-param"><span class="pre">l2_coef:</span> <span class="pre">Optional[float]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">dropout:</span> <span class="pre">Optional[float]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">dropout_on_predict:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">keras.engine.training.Model</span></span></span><a class="reference internal" href="_modules/megnet/models/megnet.html#make_megnet_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.models.megnet.make_megnet_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a MEGNet Model
+:param nfeat_edge: (int) number of bond features
+:param nfeat_global: (int) number of state features
+:param nfeat_node: (int) number of atom features
+:param nblocks: (int) number of MEGNetLayer blocks
+:param n1: (int) number of hidden units in layer 1 in MEGNetLayer
+:param n2: (int) number of hidden units in layer 2 in MEGNetLayer
+:param n3: (int) number of hidden units in layer 3 in MEGNetLayer
+:param nvocal: (int) number of total element
+:param embedding_dim: (int) number of embedding dimension
+:param nbvocal: (int) number of bond types if bond attributes are types
+:param bond_embedding_dim: (int) number of bond embedding dimension
+:param ngvocal: (int) number of global types if global attributes are types
+:param global_embedding_dim: (int) number of global embedding dimension
+:param npass: (int) number of recurrent steps in Set2Set layer
+:param ntarget: (int) number of output targets
+:param act: (object) activation function
+:param l2_coef: (float or None) l2 regularization parameter
+:param is_classification: (bool) whether it is a classification task
+:param dropout: (float) dropout rate
+:param dropout_on_predict: Whether to use dropout during prediction and training
+:type dropout_on_predict: bool
+:param kwargs: in the case where bond inputs are pure distances (not the expanded</p>
+<blockquote>
+<div><p>distances nor integers for embedding, i.e., nfeat_edge=None and bond_embedding_dim=None),
+kwargs can take additional inputs for expand the distance using Gaussian basis.</p>
+<p>centers (np.ndarray): array for defining the Gaussian expansion centers
+width (float): width for the Gaussian basis</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(Model) Keras model, ready to run</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="megnet.html">megnet package</a><ul>
+  <li><a href="megnet.models.html">megnet.models package</a><ul>
+      <li>Previous: <a href="megnet.models.base.html" title="previous chapter">megnet.models.base module</a></li>
+      <li>Next: <a href="megnet.utils.html" title="next chapter">megnet.utils package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/megnet.models.megnet.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+      &copy; Copyright 2019, Materials Virtual Lab.
+    </div>
+
+
+  </body>
+</html>

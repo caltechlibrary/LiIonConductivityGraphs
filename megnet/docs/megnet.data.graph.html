@@ -1,0 +1,490 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>megnet.data.graph module &#8212; megnet 1.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/flasky.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="megnet.data.local_env module" href="megnet.data.local_env.html" />
+    <link rel="prev" title="megnet.data.crystal module" href="megnet.data.crystal.html" />
+
+   
+  
+  <link media="only screen and (max-device-width: 480px)" href="_static/small_flask.css" type= "text/css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="megnet.data.local_env.html" title="megnet.data.local_env module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="megnet.data.crystal.html" title="megnet.data.crystal module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">megnet 1.3.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="megnet.html" >megnet package</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="megnet.data.html" accesskey="U">megnet.data package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">megnet.data.graph module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-megnet.data.graph">
+<span id="megnet-data-graph-module"></span><h1>megnet.data.graph module<a class="headerlink" href="#module-megnet.data.graph" title="Permalink to this headline">¶</a></h1>
+<p>Abstract classes and utility operations for building graph representations and
+data loaders (known as Sequence objects in Keras).
+Most users will not need to interact with this module.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="megnet.data.graph.BaseGraphBatchGenerator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">BaseGraphBatchGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weights</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_shuffle</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/megnet/data/graph.html#BaseGraphBatchGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.BaseGraphBatchGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">keras.utils.data_utils.Sequence</span></code></p>
+<p>Base class for classes that generate batches of training data for MEGNet.
+Based on the Sequence class, which is the data loader equivalent for Keras.
+Implementations of this base class must implement the <code class="xref py py-meth docutils literal notranslate"><span class="pre">_generate_inputs()</span></code>,
+which generates the lists of graph descriptions for a batch.
+The <code class="xref py py-meth docutils literal notranslate"><span class="pre">process_atom_features()</span></code> function and related functions are used to modify
+the features for each atom, bond, and global features when creating a batch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset_size</strong> (<em>int</em>) – Number of entries in dataset</p></li>
+<li><p><strong>targets</strong> (<em>ndarray</em>) – Feature to be predicted for each network</p></li>
+<li><p><strong>sample_weights</strong> (<em>npdarray</em>) – sample weights</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – Maximum batch size</p></li>
+<li><p><strong>is_shuffle</strong> (<em>bool</em>) – Whether to shuffle the data after each step</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.BaseGraphBatchGenerator.on_epoch_end">
+<span class="sig-name descname"><span class="pre">on_epoch_end</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/megnet/data/graph.html#BaseGraphBatchGenerator.on_epoch_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.BaseGraphBatchGenerator.on_epoch_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>code to be executed on epoch end</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.BaseGraphBatchGenerator.process_atom_feature">
+<span class="sig-name descname"><span class="pre">process_atom_feature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#BaseGraphBatchGenerator.process_atom_feature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.BaseGraphBatchGenerator.process_atom_feature" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – atom features</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>processed atom features</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.BaseGraphBatchGenerator.process_bond_feature">
+<span class="sig-name descname"><span class="pre">process_bond_feature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#BaseGraphBatchGenerator.process_bond_feature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.BaseGraphBatchGenerator.process_bond_feature" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – bond features</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>processed bond features</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.BaseGraphBatchGenerator.process_state_feature">
+<span class="sig-name descname"><span class="pre">process_state_feature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#BaseGraphBatchGenerator.process_state_feature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.BaseGraphBatchGenerator.process_state_feature" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – state features</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>processed state features</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="megnet.data.graph.Converter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Converter</span></span><a class="reference internal" href="_modules/megnet/data/graph.html#Converter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.Converter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">monty.json.MSONable</span></code></p>
+<p>Base class for atom or bond converter</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.Converter.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#Converter.convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.Converter.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the object d
+:param d: Any object d
+:type d: Any</p>
+<p>Returns: returned object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="megnet.data.graph.DummyConverter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">DummyConverter</span></span><a class="reference internal" href="_modules/megnet/data/graph.html#DummyConverter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.DummyConverter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#megnet.data.graph.Converter" title="megnet.data.graph.Converter"><code class="xref py py-class docutils literal notranslate"><span class="pre">megnet.data.graph.Converter</span></code></a></p>
+<p>Dummy converter as a placeholder</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.DummyConverter.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#DummyConverter.convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.DummyConverter.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dummy convert, does nothing to input
+:param d: input object
+:type d: Any</p>
+<p>Returns: d</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="megnet.data.graph.EmbeddingMap">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">EmbeddingMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_matrix</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/megnet/data/graph.html#EmbeddingMap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.EmbeddingMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#megnet.data.graph.Converter" title="megnet.data.graph.Converter"><code class="xref py py-class docutils literal notranslate"><span class="pre">megnet.data.graph.Converter</span></code></a></p>
+<p>Convert an integer to a row vector in a feature matrix</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>feature_matrix</strong> – (np.ndarray) A matrix of shape (N, M)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.EmbeddingMap.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int_array</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#EmbeddingMap.convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.EmbeddingMap.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert atomic number to row vectors in the feature_matrix
+:param int_array: (1d array) number array of length L</p>
+<dl class="simple">
+<dt>Returns</dt><dd><p>(matrix) L*M matrix with N the length of d and M the length of centers</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="megnet.data.graph.GaussianDistance">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">GaussianDistance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">centers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">array([0.,</span> <span class="pre">0.05050505,</span> <span class="pre">0.1010101,</span> <span class="pre">0.15151515,</span> <span class="pre">0.2020202,</span> <span class="pre">0.25252525,</span> <span class="pre">0.3030303,</span> <span class="pre">0.35353535,</span> <span class="pre">0.4040404,</span> <span class="pre">0.45454545,</span> <span class="pre">0.50505051,</span> <span class="pre">0.55555556,</span> <span class="pre">0.60606061,</span> <span class="pre">0.65656566,</span> <span class="pre">0.70707071,</span> <span class="pre">0.75757576,</span> <span class="pre">0.80808081,</span> <span class="pre">0.85858586,</span> <span class="pre">0.90909091,</span> <span class="pre">0.95959596,</span> <span class="pre">1.01010101,</span> <span class="pre">1.06060606,</span> <span class="pre">1.11111111,</span> <span class="pre">1.16161616,</span> <span class="pre">1.21212121,</span> <span class="pre">1.26262626,</span> <span class="pre">1.31313131,</span> <span class="pre">1.36363636,</span> <span class="pre">1.41414141,</span> <span class="pre">1.46464646,</span> <span class="pre">1.51515152,</span> <span class="pre">1.56565657,</span> <span class="pre">1.61616162,</span> <span class="pre">1.66666667,</span> <span class="pre">1.71717172,</span> <span class="pre">1.76767677,</span> <span class="pre">1.81818182,</span> <span class="pre">1.86868687,</span> <span class="pre">1.91919192,</span> <span class="pre">1.96969697,</span> <span class="pre">2.02020202,</span> <span class="pre">2.07070707,</span> <span class="pre">2.12121212,</span> <span class="pre">2.17171717,</span> <span class="pre">2.22222222,</span> <span class="pre">2.27272727,</span> <span class="pre">2.32323232,</span> <span class="pre">2.37373737,</span> <span class="pre">2.42424242,</span> <span class="pre">2.47474747,</span> <span class="pre">2.52525253,</span> <span class="pre">2.57575758,</span> <span class="pre">2.62626263,</span> <span class="pre">2.67676768,</span> <span class="pre">2.72727273,</span> <span class="pre">2.77777778,</span> <span class="pre">2.82828283,</span> <span class="pre">2.87878788,</span> <span class="pre">2.92929293,</span> <span class="pre">2.97979798,</span> <span class="pre">3.03030303,</span> <span class="pre">3.08080808,</span> <span class="pre">3.13131313,</span> <span class="pre">3.18181818,</span> <span class="pre">3.23232323,</span> <span class="pre">3.28282828,</span> <span class="pre">3.33333333,</span> <span class="pre">3.38383838,</span> <span class="pre">3.43434343,</span> <span class="pre">3.48484848,</span> <span class="pre">3.53535354,</span> <span class="pre">3.58585859,</span> <span class="pre">3.63636364,</span> <span class="pre">3.68686869,</span> <span class="pre">3.73737374,</span> <span class="pre">3.78787879,</span> <span class="pre">3.83838384,</span> <span class="pre">3.88888889,</span> <span class="pre">3.93939394,</span> <span class="pre">3.98989899,</span> <span class="pre">4.04040404,</span> <span class="pre">4.09090909,</span> <span class="pre">4.14141414,</span> <span class="pre">4.19191919,</span> <span class="pre">4.24242424,</span> <span class="pre">4.29292929,</span> <span class="pre">4.34343434,</span> <span class="pre">4.39393939,</span> <span class="pre">4.44444444,</span> <span class="pre">4.49494949,</span> <span class="pre">4.54545455,</span> <span class="pre">4.5959596,</span> <span class="pre">4.64646465,</span> <span class="pre">4.6969697,</span> <span class="pre">4.74747475,</span> <span class="pre">4.7979798,</span> <span class="pre">4.84848485,</span> <span class="pre">4.8989899,</span> <span class="pre">4.94949495,</span> <span class="pre">5.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/megnet/data/graph.html#GaussianDistance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.GaussianDistance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#megnet.data.graph.Converter" title="megnet.data.graph.Converter"><code class="xref py py-class docutils literal notranslate"><span class="pre">megnet.data.graph.Converter</span></code></a></p>
+<p>Expand distance with Gaussian basis sit at centers and with width 0.5.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>centers</strong> – (np.array) centers for the Gaussian basis</p></li>
+<li><p><strong>width</strong> – (float) width of Gaussian basis</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.GaussianDistance.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#GaussianDistance.convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.GaussianDistance.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>expand distance vector d with given parameters
+:param d: (1d array) distance array</p>
+<dl class="simple">
+<dt>Returns</dt><dd><p>(matrix) N*M matrix with N the length of d and M the length of centers</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="megnet.data.graph.GraphBatchDistanceConvert">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">GraphBatchDistanceConvert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_features</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_features</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_features</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index1_list</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index2_list</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weights</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_shuffle</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_converter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#megnet.data.graph.Converter" title="megnet.data.graph.Converter"><span class="pre">megnet.data.graph.Converter</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/megnet/data/graph.html#GraphBatchDistanceConvert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.GraphBatchDistanceConvert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#megnet.data.graph.GraphBatchGenerator" title="megnet.data.graph.GraphBatchGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">megnet.data.graph.GraphBatchGenerator</span></code></a></p>
+<p>Generate batch of structures with bond distance being expanded using a Expansor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atom_features</strong> – (list of np.array) list of atom feature matrix,</p></li>
+<li><p><strong>bond_features</strong> – (list of np.array) list of bond features matrix</p></li>
+<li><p><strong>state_features</strong> – (list of np.array) list of [1, G] state features,
+where G is the global state feature dimension</p></li>
+<li><p><strong>index1_list</strong> – (list of integer) list of (M, ) one side atomic index
+of the bond, M is different for different structures</p></li>
+<li><p><strong>index2_list</strong> – (list of integer) list of (M, ) the other side atomic
+index of the bond, M is different for different structures,
+but it has to be the same as the correponding index1.</p></li>
+<li><p><strong>targets</strong> – (numpy array), N*1, where N is the number of structures</p></li>
+<li><p><strong>sample_weights</strong> – (numpy array), N*1, where N is the number of structures</p></li>
+<li><p><strong>batch_size</strong> – (int) number of samples in a batch</p></li>
+<li><p><strong>is_shuffle</strong> – (bool) whether to shuffle the structure, default to True</p></li>
+<li><p><strong>distance_converter</strong> – (bool) converter for processing the distances</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.GraphBatchDistanceConvert.process_bond_feature">
+<span class="sig-name descname"><span class="pre">process_bond_feature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#GraphBatchDistanceConvert.process_bond_feature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.GraphBatchDistanceConvert.process_bond_feature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert bond distances into Gaussian expanded vectors
+:param x: input distance array
+:type x: np.ndarray</p>
+<p>Returns: expanded matrix</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="megnet.data.graph.GraphBatchGenerator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">GraphBatchGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_features</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_features</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_features</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index1_list</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index2_list</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weights</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_shuffle</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/megnet/data/graph.html#GraphBatchGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.GraphBatchGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#megnet.data.graph.BaseGraphBatchGenerator" title="megnet.data.graph.BaseGraphBatchGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">megnet.data.graph.BaseGraphBatchGenerator</span></code></a></p>
+<p>A generator class that assembles several structures (indicated by
+batch_size) and form (x, y) pairs for model training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atom_features</strong> – (list of np.array) list of atom feature matrix,</p></li>
+<li><p><strong>bond_features</strong> – (list of np.array) list of bond features matrix</p></li>
+<li><p><strong>state_features</strong> – (list of np.array) list of [1, G] state features,
+where G is the global state feature dimension</p></li>
+<li><p><strong>index1_list</strong> – (list of integer) list of (M, ) one side atomic index of the bond,</p></li>
+<li><p><strong>structures</strong> (<em>M is different for different</em>) – </p></li>
+<li><p><strong>index2_list</strong> – (list of integer) list of (M, ) the other side atomic
+index of the bond, M is different for different structures,
+but it has to be the same as the corresponding index1.</p></li>
+<li><p><strong>targets</strong> – (numpy array), N*1, where N is the number of structures</p></li>
+<li><p><strong>sample_weights</strong> – (numpy array), N*1, where N is the number of structures</p></li>
+<li><p><strong>batch_size</strong> – (int) number of samples in a batch</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="megnet.data.graph.StructureGraph">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">StructureGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nn_strategy</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">pymatgen.analysis.local_env.NearNeighbors</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_converter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#megnet.data.graph.Converter" title="megnet.data.graph.Converter"><span class="pre">megnet.data.graph.Converter</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_converter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#megnet.data.graph.Converter" title="megnet.data.graph.Converter"><span class="pre">megnet.data.graph.Converter</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/megnet/data/graph.html#StructureGraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.StructureGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">monty.json.MSONable</span></code></p>
+<p>This is a base class for converting converting structure into graphs or model inputs
+Methods to be implemented are follows:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><dl class="simple">
+<dt>convert(self, structure)</dt><dd><p>This is to convert a structure into a graph dictionary</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>get_input(self, structure)</dt><dd><p>This method convert a structure directly to a model input</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>get_flat_data(self, graphs, targets)</dt><dd><p>This method process graphs and targets pairs and output model input list.</p>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nn_strategy</strong> (<em>str</em><em> or </em><em>NearNeighbors</em>) – NearNeighbor strategy</p></li>
+<li><p><strong>atom_converter</strong> (<a class="reference internal" href="#megnet.data.graph.Converter" title="megnet.data.graph.Converter"><em>Converter</em></a>) – atom converter</p></li>
+<li><p><strong>bond_converter</strong> (<a class="reference internal" href="#megnet.data.graph.Converter" title="megnet.data.graph.Converter"><em>Converter</em></a>) – bond converter</p></li>
+<li><p><strong>**kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.StructureGraph.as_dict">
+<span class="sig-name descname"><span class="pre">as_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#StructureGraph.as_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.StructureGraph.as_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize to dict
+Returns: (dict) dictionary of information</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.StructureGraph.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">structure</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pymatgen.core.structure.Structure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_attributes</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#StructureGraph.convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.StructureGraph.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take a pymatgen structure and convert it to a index-type graph representation
+The graph will have node, distance, index1, index2, where node is a vector of Z number
+of atoms in the structure, index1 and index2 mark the atom indices forming the bond and separated by
+distance.
+For state attributes, you can set structure.state = [[xx, xx]] beforehand or the algorithm would
+take default [[0, 0]]
+:param state_attributes: (list) state attributes
+:param structure: (pymatgen structure)
+:param (dictionary):</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.StructureGraph.from_dict">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#megnet.data.graph.StructureGraph" title="megnet.data.graph.StructureGraph"><span class="pre">megnet.data.graph.StructureGraph</span></a></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#StructureGraph.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.StructureGraph.from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialization from dictionary
+:param d: dictionary
+:type d: dict</p>
+<p>Returns: StructureGraph object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.StructureGraph.get_atom_features">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_atom_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">structure</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#StructureGraph.get_atom_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.StructureGraph.get_atom_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get atom features from structure, may be overwritten
+:param structure: (Pymatgen.Structure) pymatgen structure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List of atomic numbers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.StructureGraph.get_flat_data">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_flat_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graphs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#StructureGraph.get_flat_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.StructureGraph.get_flat_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expand the graph dictionary to form a list of features and targets tensors.
+This is useful when the model is trained on assembled graphs on the fly.
+:param graphs: (list of dictionary) list of graph dictionary for each structure
+:param targets: (list of float or list) Optional: corresponding target</p>
+<blockquote>
+<div><p>values for each structure</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tuple(node_features, edges_features, global_values, index1, index2, targets)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.StructureGraph.get_input">
+<span class="sig-name descname"><span class="pre">get_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">structure</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pymatgen.core.structure.Structure</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#StructureGraph.get_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.StructureGraph.get_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns a structure into model input</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.StructureGraph.graph_to_input">
+<span class="sig-name descname"><span class="pre">graph_to_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#StructureGraph.graph_to_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.StructureGraph.graph_to_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns a graph into model input
+:param (dict): Dictionary description of the graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Inputs in the form needed by MEGNet</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>([np.ndarray])</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="megnet.data.graph.StructureGraphFixedRadius">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">StructureGraphFixedRadius</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nn_strategy</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">pymatgen.analysis.local_env.NearNeighbors</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_converter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#megnet.data.graph.Converter" title="megnet.data.graph.Converter"><span class="pre">megnet.data.graph.Converter</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_converter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#megnet.data.graph.Converter" title="megnet.data.graph.Converter"><span class="pre">megnet.data.graph.Converter</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/megnet/data/graph.html#StructureGraphFixedRadius"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.StructureGraphFixedRadius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#megnet.data.graph.StructureGraph" title="megnet.data.graph.StructureGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">megnet.data.graph.StructureGraph</span></code></a></p>
+<p>This one uses a short cut to call find_points_in_spheres cython function in
+pymatgen. It is orders of magnitude faster than previous implementations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nn_strategy</strong> (<em>str</em><em> or </em><em>NearNeighbors</em>) – NearNeighbor strategy</p></li>
+<li><p><strong>atom_converter</strong> (<a class="reference internal" href="#megnet.data.graph.Converter" title="megnet.data.graph.Converter"><em>Converter</em></a>) – atom converter</p></li>
+<li><p><strong>bond_converter</strong> (<a class="reference internal" href="#megnet.data.graph.Converter" title="megnet.data.graph.Converter"><em>Converter</em></a>) – bond converter</p></li>
+<li><p><strong>**kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.StructureGraphFixedRadius.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">structure</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pymatgen.core.structure.Structure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_attributes</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#StructureGraphFixedRadius.convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.StructureGraphFixedRadius.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take a pymatgen structure and convert it to a index-type graph representation
+The graph will have node, distance, index1, index2, where node is a vector of Z number
+of atoms in the structure, index1 and index2 mark the atom indices forming the bond and separated by
+distance.
+For state attributes, you can set structure.state = [[xx, xx]] beforehand or the algorithm would
+take default [[0, 0]]
+:param state_attributes: (list) state attributes
+:param structure: (pymatgen structure)
+:param (dictionary):</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="megnet.data.graph.StructureGraphFixedRadius.from_structure_graph">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_structure_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">structure_graph</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#megnet.data.graph.StructureGraph" title="megnet.data.graph.StructureGraph"><span class="pre">megnet.data.graph.StructureGraph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#megnet.data.graph.StructureGraphFixedRadius" title="megnet.data.graph.StructureGraphFixedRadius"><span class="pre">megnet.data.graph.StructureGraphFixedRadius</span></a></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#StructureGraphFixedRadius.from_structure_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.StructureGraphFixedRadius.from_structure_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize from pymatgen StructureGraph
+:param structure_graph: pymatgen StructureGraph object
+:type structure_graph: StructureGraph</p>
+<p>Returns: StructureGraphFixedRadius object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="megnet.data.graph.itemgetter_list">
+<span class="sig-name descname"><span class="pre">itemgetter_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_list</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/megnet/data/graph.html#itemgetter_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#megnet.data.graph.itemgetter_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get indices of data_list and return a tuple
+:param data_list: data list
+:type data_list: list
+:param indices: (list) indices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(tuple)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="megnet.html">megnet package</a><ul>
+  <li><a href="megnet.data.html">megnet.data package</a><ul>
+      <li>Previous: <a href="megnet.data.crystal.html" title="previous chapter">megnet.data.crystal module</a></li>
+      <li>Next: <a href="megnet.data.local_env.html" title="next chapter">megnet.data.local_env module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/megnet.data.graph.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+      &copy; Copyright 2019, Materials Virtual Lab.
+    </div>
+
+
+  </body>
+</html>
