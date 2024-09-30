@@ -72,6 +72,7 @@ Modified version of the `maml` package ([https://github.com/materialsvirtuallab/
   journal = {GitHub repository},
   howpublished = {\url{https://github.com/materialsvirtuallab/maml}},
 }
+```
 
 AtomSets model:
 Chen, C.; Ong, S. P. AtomSets as a hierarchical transfer learning framework for small and large materials
