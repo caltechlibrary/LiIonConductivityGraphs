@@ -74,14 +74,17 @@ Modified version of the `maml` package ([https://github.com/materialsvirtuallab/
 }
 ```
 
-AtomSets model:
+Reference to AtomSets work:
+```bibtex
 Chen, C.; Ong, S. P. AtomSets as a hierarchical transfer learning framework for small and large materials
 datasets. Npj Comput. Mater. 2021, 7, 173. https://doi.org/10.1038/s41524-021-00639-w
+```
 
 ### megnet (MatErials Graph Network)
  
   MEGNet package (https://github.com/materialsvirtuallab/megnet) from the Materials Virtual Lab.
-  Reference to original work:
+  Reference to original MEGNet Work:
+  ```bibtex
   Chen, C.; Ye, W.; Zuo, Y.; Zheng, C.; Ong, S. P. Graph Networks as a Universal Machine Learning Framework for Molecules and Crystals. Chem. Mater. 2019, 31 (9), 3564–3572. https://doi.org/10.1021/acs.chemmater.9b01294.
-
+  ```
   
