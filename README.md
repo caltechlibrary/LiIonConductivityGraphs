@@ -87,4 +87,21 @@ datasets. Npj Comput. Mater. 2021, 7, 173. https://doi.org/10.1038/s41524-021-00
   ```bibtex
   Chen, C.; Ye, W.; Zuo, Y.; Zheng, C.; Ong, S. P. Graph Networks as a Universal Machine Learning Framework for Molecules and Crystals. Chem. Mater. 2019, 31 (9), 3564–3572. https://doi.org/10.1021/acs.chemmater.9b01294.
   ```
-  
+
+## Installation and Dependencies
+This repository relies on specific software libraries and package versions listed in requirements.txt. To ensure reproducibility, users should install the required dependencies before running the code.
+
+### Setting Up the Environment with Conda
+```bash
+conda create --name li_ion_ml python=3.9
+```
+
+### Activate the Environment
+```bash
+conda activate li_ion_ml
+```
+
+### Install dependencies from requirements.txt
+```bash
+pip install -r requirements.txt
+```
