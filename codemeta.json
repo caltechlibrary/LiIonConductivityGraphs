@@ -1,0 +1,33 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "@type": "SoftwareSourceCode",
+    "name": "LiIonConductivityGraphs",
+    "description": "This repository contains code and data related to the publication following publication: Classification of (Dis)ordered Structures as Superionic Lithium Conductors (https://doi.org/10.26434/chemrxiv-2024-712r9)",
+    "version": "1.0",
+    "author": [
+        {
+            "@type": "Person",
+            "givenName": "Daniel B.",
+            "familyName": "McHaffie",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "California Institute of Technology Library"
+            }
+        }
+    ],
+    "url": "https://github.com/dmchaffi/LiIonConductivityGraphs",
+    "codeRepository": "https://github.com/dmchaffi/LiIonConductivityGraphs",
+    "readme": "https://github.com/dmchaffi/LiIonConductivityGraphs/blob/main/README.md",
+    "programmingLanguage": {
+        "@type": "ComputerLanguage",
+        "name": "Python",
+        "version": "3.9",
+        "url": "https://www.python.org/"
+    },
+    "keywords": [
+        "GitHub",
+        "Lithium",
+        "Solid-state electrolytes",
+        "Machine learning"
+    ]
+}
