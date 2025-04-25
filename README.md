@@ -2,7 +2,7 @@
 
 ## Overview
 This repository contains code and data related to the publication following publication:
-Classification of (Dis)ordered Structures as Superionic Lithium Conductors with an Experimental Structure-Conductivity Database
+Classification of (Dis)ordered Structures as Superionic Lithium Conductors with an Experimental Structure-Conductivity Database.
 
 ChemRxiv link: https://doi.org/10.26434/chemrxiv-2024-712r9
 
