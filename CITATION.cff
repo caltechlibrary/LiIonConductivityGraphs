@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: LiIonConductivityGraphs
 authors:
-abstract: This repository contains code and data related to the publication following publication: Classification of (Dis)ordered Structures as Superionic Lithium Conductors (https://doi.org/10.26434/chemrxiv-2024-712r9)
+abstract: This repository contains code and data related to the publication following publication: Classification of (Dis)ordered Structures as Superionic Lithium Conductors with an Experimental Structure-Conductivity Database. (https://doi.org/10.26434/chemrxiv-2024-712r9)
 repository-code: "https://github.com/dmchaffi/LiIonConductivityGraphs"
 type: software
 doi: 10.22002/cgx0v-wqq34
