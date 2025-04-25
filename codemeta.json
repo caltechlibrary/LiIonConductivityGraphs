@@ -1,6 +1,7 @@
 {
     "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
     "@type": "SoftwareSourceCode",
+    "identifier": "10.22002/cgx0v-wqq34",
     "name": "LiIonConductivityGraphs",
     "description": "This repository contains code and data related to the publication following publication: Classification of (Dis)ordered Structures as Superionic Lithium Conductors (https://doi.org/10.26434/chemrxiv-2024-712r9)",
     "version": "1.0",
